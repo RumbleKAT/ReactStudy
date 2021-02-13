@@ -4,11 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Counter from './Counter'
-import './exercise'
+
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './modules';
+
+const store = createStore(rootReducer)
+console.log(store.getState());
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   // <Counter/>,
   document.getElementById('root')

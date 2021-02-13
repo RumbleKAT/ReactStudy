@@ -2,7 +2,8 @@ import React, { useRef, useState, useMemo, useCallback, useReducer } from 'react
 import UserList from './UserList';
 import CreateUser from './CreateUser';
 import useInputs from './hooks/useInput';
-import Users from './Users';
+// import Users from './Users';
+import CounterContainer from './containers/CounterContainer';
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -112,7 +113,9 @@ function App() {
   // },[]);
 
   return (
-    <Users/>
+    <>
+      <CounterContainer/>
+    </>
   )
 }
 

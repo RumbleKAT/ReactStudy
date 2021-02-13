@@ -1,34 +1,17 @@
-import React, { useReducer, useState } from 'react';
+import React from 'react';
 
-function reducer(state, action){
-    switch(action.type){
-        case 'INCREMENT':
-            return state + 1;
-        case 'DECREMENT':
-            return state - 1;
-        default:
-            return state;
+function Counter({number, diff, onIncrease, onDecrease, onSetDiff}){
+    const onChange = e =>{
+        onSetDiff(parseInt(e.target.value,10));
     }
-}
-
-
-function Counter(){
-    const [number, dispatch] = useReducer(reducer, 0);
-
-
-    const onIncrease = () =>{
-        dispatch({type : 'INCREMENT'}) 
-    }
-
-    const onDecrease = () =>{
-        dispatch({type : 'DECREMENT'})
-    }
-
     return(
         <>
             <h1>{number}</h1>
-            <button onClick={onIncrease}>+1</button>
-            <button onClick={onDecrease}>-1</button>
+            <div>
+                <input type="number" value={diff} min="1" onChange={onChange}/>
+                <button onClick={onIncrease}>+</button>
+                <button onClick={onDecrease}>-</button> 
+            </div>
         </>
     )
 }

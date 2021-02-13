@@ -1,14 +1,14 @@
-import React , {useEffect} from 'react';
+import React from 'react';
 
-function User({ user, onRemove,onToggle }) {
-    useEffect(()=>{
-        console.log('user 값이 설정됨')
-        console.log(user);
-        return ()=>{ //clean up 함수 
-            console.log('user가 바뀌기 전...'); //unmount 시 호출 
-            console.log(user)
-        }
-    },[user]);//의존값 배열이 비어있다면, 컴포넌트가 처음 나타날때만 useEffect 에 등록한 함수가 호출됨
+const User = React.memo(function User({ user, onRemove,onToggle }) {
+    // useEffect(()=>{
+    //     console.log('user 값이 설정됨')
+    //     console.log(user);
+    //     return ()=>{ //clean up 함수 
+    //         console.log('user가 바뀌기 전...'); //unmount 시 호출 
+    //         console.log(user)
+    //     }
+    // },[user]);//의존값 배열이 비어있다면, 컴포넌트가 처음 나타날때만 useEffect 에 등록한 함수가 호출됨
 /*
     useEffect(()=>{
         console.log(user);
@@ -17,7 +17,6 @@ function User({ user, onRemove,onToggle }) {
 
     실제 DOM은 바뀐 내용이 있는 컴포넌트만 변경 but Virtual DOM에는 모든 걸다 렌더링한다.
 */
-
   return (
     <div>
         <b style={{
@@ -28,7 +27,7 @@ function User({ user, onRemove,onToggle }) {
         <button onClick={()=> onRemove(user.id)}>삭제</button>
     </div>
   );
-}
+});
 
 function UserList({ users, onRemove ,onToggle}) {
   return (
@@ -40,4 +39,4 @@ function UserList({ users, onRemove ,onToggle}) {
   );
 }
 
-export default UserList;
+export default React.memo(UserList);

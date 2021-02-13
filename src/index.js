@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Counter from './Counter'
+import './exercise'
 
 ReactDOM.render(
   <React.StrictMode>

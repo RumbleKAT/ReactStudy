@@ -4,6 +4,11 @@ import CreateUser from './CreateUser';
 import useInputs from './hooks/useInput';
 // import Users from './Users';
 import CounterContainer from './containers/CounterContainer';
+import PostListContainer from './containers/PostListContainer'
+import { Route } from 'react-router-dom';
+import PostListPage from './pages/PostListPage'
+import PostPage from './pages/PostPage'
+
 
 function countActiveUsers(users) {
   console.log('활성 사용자 수를 세는중...');
@@ -114,7 +119,8 @@ function App() {
 
   return (
     <>
-      <CounterContainer/>
+      <Route path="/" component={PostListPage} exact={true}/>
+      <Route path="/:id" component={PostPage} />
     </>
   )
 }

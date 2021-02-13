@@ -15,6 +15,13 @@ export const decrease = () => ({
     type: DECREASE
 })
 
+export const increaseAsync = () => dispatch => {
+    setTimeout(() => dispatch(increase()), 1000);
+  };
+  export const decreaseAsync = () => dispatch => {
+    setTimeout(() => dispatch(decrease()), 1000);
+  };
+
 //초기 상태 선언
 const initalState = {
     number: 0,
@@ -29,17 +36,17 @@ export default function counter(state = initalState, action) {
                 ...state,
                 diff: action.diff
             }
-            case INCREASE:
-                return {
-                    ...state,
-                    number: state.number + state.diff
-                }
-                case DECREASE:
-                    return {
-                        ...state,
-                        number: state.number - state.diff
-                    }
-                    default:
-                        return state;
+        case INCREASE:
+            return {
+                ...state,
+                number: state.number + state.diff
+            }
+        case DECREASE:
+            return {
+                ...state,
+                number: state.number - state.diff
+            }
+            default:
+                return state;
     }
 }

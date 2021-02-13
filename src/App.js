@@ -67,14 +67,12 @@ function reducer(state, action){
   }
 }
 
+//userDispatch  
+export const UserDispatch = React.createContext(null);
+
 function App() {
-  const [{username, email},onChange, reset] = useInputs({
-    username : '',
-    email : ''
-  });
   const [state, dispatch] = useReducer(reducer, initalState);
   const { users } = state;
-  const nextId = useRef(4);
   const count = useMemo(() => countActiveUsers(users), [users]);
 
   // const onChange = useCallback(e =>{
@@ -85,40 +83,39 @@ function App() {
   //     value
   //   })
   // },[]);
+  // const onCreate = useCallback(()=>{
+  //   dispatch({
+  //     type : 'CREATE_USER',
+  //     user : {
+  //       id : nextId.current,
+  //       username,
+  //       email
+  //     }
+  //   });
+  //   onReset();
+  //   nextId.current += 1;
+  // },[username,email, onReset]);
 
-  const onCreate = useCallback(()=>{
-    dispatch({
-      type : 'CREATE_USER',
-      user : {
-        id : nextId.current,
-        username,
-        email
-      }
-    });
-    reset();
-    nextId.current += 1;
-  },[username,email]);
+  // const onToggle = useCallback(id=>{
+  //   dispatch({
+  //     type : 'TOGGLE_USER',
+  //     id
+  //   })
+  // },[]);
 
-  const onToggle = useCallback(id=>{
-    dispatch({
-      type : 'TOGGLE_USER',
-      id
-    })
-  },[]);
-
-  const onRemove = useCallback(id=>{
-    dispatch({
-      type : 'REMOVE_USER',
-      id
-    })
-  },[]);
+  // const onRemove = useCallback(id=>{
+  //   dispatch({
+  //     type : 'REMOVE_USER',
+  //     id
+  //   })
+  // },[]);
 
   return (
-    <>
-      <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate}/>
-      <UserList users={users} onToggle={onToggle} onRemove={onRemove} />
+    <UserDispatch.Provider value={dispatch}>
+      <CreateUser />
+      <UserList users={users}/>
       <div>활성사용자 수 : {count}</div>
-    </>
+    </UserDispatch.Provider>
   )
 }
 

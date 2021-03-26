@@ -92,5 +92,36 @@ function (value){
 
 ## 3 단계. 2단계 결과값과 addFour\(\) 함수의 조합
 
+prevFunc는 2단계에서 얻은 함수이고, nextFunc는 addFour이다. 
+
+```javascript
+function(value){
+ return addFour(
+   function(value){
+     return multiplyThree(
+       function(value){
+         return multiplyTwo((k=>k)(value));
+       }(value)
+     );
+   }(value);
+ );
+}
+```
+
+## 간결한 코드
+
+```javascript
+function compose(...funcArr){
+    return funcArr.reduce(
+        function (prevFunc, nextFunc){
+            return function(...args){
+                return nextFunc(prevFunc(...args));
+            }
+        },
+        function(k) { return k; }
+    );
+}
+```
+
 
 

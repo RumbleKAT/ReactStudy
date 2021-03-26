@@ -30,7 +30,7 @@ call stack 관련 설명 블로그 URL
 
 **3-1. 커링\(curring\)** [**https://sujinlee.me/currying-in-functional-javascript/**](https://sujinlee.me/currying-in-functional-javascript/)\*\*\*\*
 
-**3-2. 하이어 오더 컴포넌트 \(aka Interface\)**
+\*\*\*\*[**3-2. 하이어 오더 컴포넌트 \(aka Interface\)**](undefined.md)\*\*\*\*
 
 **3-3. Reducer / Context API**
 

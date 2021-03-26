@@ -60,9 +60,37 @@ const formula = x => addFour(multiplyThree(multiplyTwo(x)));
     },
     function(k){ return k;}
 )
+
+const formulaWithCompose = compose([multiplyTwo, multiplyThree, addFour]);
 ```
 
+## 1 단계. 초기값과 multiplyTwo함수의 조합
 
+prevFunc는 function\(k\){return k} / nextFunc는 multiplyTwo이다. 
+
+```javascript
+function(value){
+    return multiplyTwo((k=>k)(value));
+}
+```
+
+## 2 단계. 1단계의 결과값과 multiplyThree\(\) 함수의 조합
+
+prevFunc는 1단계에서 얻은 함수, nextFunc는 multiplyThree이다. 
+
+```javascript
+function (value){
+    return multiplyThree(
+        function(value){
+          return multiplyTwo(
+              k=>k)(value)
+          );  
+    }(value);
+  );
+}
+```
+
+## 3 단계. 2단계 결과값과 addFour\(\) 함수의 조합
 
 
 
